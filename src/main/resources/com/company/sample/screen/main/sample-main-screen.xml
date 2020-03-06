@@ -1,0 +1,6 @@
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd">
+    <data/>
+    <layout margin="true">
+        <label value="Hello World" stylename="h1"/>
+    </layout>
+</window>

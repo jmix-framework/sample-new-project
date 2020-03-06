@@ -1,0 +1,52 @@
+buildscript {
+    ext.jmixVersion = '0.0.1-SNAPSHOT'
+    repositories {
+        maven {
+            url System.getenv('HAULMONT_REPOSITORY_URL')
+            credentials {
+                username System.getenv('HAULMONT_REPOSITORY_USER')
+                password System.getenv('HAULMONT_REPOSITORY_PASSWORD')
+            }
+        }
+    }
+    dependencies {
+        classpath "io.jmix.gradle:jmix-gradle-plugin:$jmixVersion"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'io.jmix'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    maven {
+        url System.getenv('HAULMONT_REPOSITORY_URL')
+        credentials {
+            username System.getenv('HAULMONT_REPOSITORY_USER')
+            password System.getenv('HAULMONT_REPOSITORY_PASSWORD')
+        }
+    }
+}
+
+dependencies {
+    implementation platform("io.jmix.bom:jmix-bom:$jmixVersion")
+    implementation 'io.jmix.starter.standard:jmix-starter-standard'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    runtimeOnly 'org.hsqldb:hsqldb'
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+entitiesEnhancing {
+    enabled = true
+}
+
+test {
+    useJUnitPlatform()
+}
