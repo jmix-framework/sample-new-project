@@ -17,7 +17,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'io.jmix'
 
-group = 'com.example'
+group = 'com.company'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
