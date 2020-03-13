@@ -13,6 +13,9 @@ buildscript {
         classpath "io.jmix.gradle:jmix-gradle-plugin:$jmixVersion"
     }
 }
+plugins {
+    id "org.springframework.boot" version "2.2.4.RELEASE"
+}
 
 apply plugin: 'java'
 apply plugin: 'io.jmix'
