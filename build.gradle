@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation platform('io.jmix.bom:jmix-bom:0.0.1-SNAPSHOT')
+    implementation platform('io.jmix.bom:jmix-bom:1.0-SNAPSHOT')
     implementation 'io.jmix.starter.standard:jmix-starter-standard'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
