@@ -1,6 +1,8 @@
 @import "custom-hover-defaults";
+@import "addons";
 @import "custom-hover";
 
 .custom-hover {
+  @include addons;
   @include custom-hover;
 }
