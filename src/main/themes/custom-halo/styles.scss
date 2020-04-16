@@ -1,0 +1,8 @@
+@import "custom-halo-defaults";
+@import "addons";
+@import "custom-halo";
+
+.custom-halo {
+  @include addons;
+  @include custom-halo;
+}
