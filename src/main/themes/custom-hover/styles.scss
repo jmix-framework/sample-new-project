@@ -1,0 +1,6 @@
+@import "custom-hover-defaults";
+@import "custom-hover";
+
+.custom-hover {
+  @include custom-hover;
+}

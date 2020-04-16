@@ -29,6 +29,8 @@ dependencies {
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
+
+    themes 'io.jmix.ui-themes:jmix-ui-themes:1.0-SNAPSHOT'
 }
 
 test {
