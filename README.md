@@ -36,4 +36,4 @@ dependencies {
 
 ```
 cuba.web.theme = custom-theme
-```ˆ
+```
