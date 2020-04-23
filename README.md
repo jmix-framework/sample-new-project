@@ -28,12 +28,13 @@ where `addons` is a special file that is automatically generated based on the ad
 
 ```
 dependencies {
-    themes 'io.jmix.ui-themes:jmix-ui-themes:1.0-SNAPSHOT'
+    // ...
+    themes 'io.jmix.ui-themes:jmix-ui-themes'
 }
 ```
 
 * The theme name to use is defined in the `application.properties` file:
 
 ```
-cuba.web.theme = custom-theme
+jmix.ui.theme = custom-theme
 ```
