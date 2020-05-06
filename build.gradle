@@ -1,6 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '2.2.4.RELEASE'
-    id 'io.jmix' version '0.1.3'
+    id 'io.jmix' version '0.1.4'
     id 'java'
 }
 
@@ -30,21 +30,8 @@ dependencies {
     }
 
     // Required only for developing custom client-side components
-    implementation('io.jmix.ui-widgets:jmix-ui-widgets:1.0-SNAPSHOT')
-
-    widgets 'io.jmix.ui-widgets:jmix-ui-widgets:1.0-SNAPSHOT'
-
-    // temporal fix, must be provided by Gradle Plugin
-    widgets('javax.validation:validation-api:1.0.0.GA') {
-        force = true
-    }
-}
-
-configurations {
-    implementation {
-        exclude group: 'ru.finam', module: 'slf4j-gwt'      // Exclude client-side logger
-        exclude group: 'org.slf4j', module: 'slf4j-jdk14'   // Required only for debug configuration
-    }
+    implementation 'io.jmix.ui-widgets:jmix-ui-widgets'
+    widgets 'io.jmix.ui-widgets:jmix-ui-widgets'
 }
 
 compileWidgets {

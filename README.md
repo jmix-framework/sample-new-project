@@ -9,7 +9,6 @@ An example of extending built-in Jmix widgets
 ```
 // Required only for developing custom client-side components
 implementation('io.jmix.ui-widgets:jmix-ui-widgets:1.0-SNAPSHOT')
-
 widgets 'io.jmix.ui-widgets:jmix-ui-widgets:1.0-SNAPSHOT'
 
 compileWidgets {
@@ -20,15 +19,5 @@ compileWidgets {
 * The WidgetSet name to use is defined in the `application.properties` file:
 
 ```
-cuba.web.widgetSet = com.company.sample.widgets.CustomWidgetSet
-```
-
-* Exclude `slf4j-jdk14` dependency from the **implementation** configuration:
-
-```
-configurations {
-    implementation {
-        exclude group: 'org.slf4j', module: 'slf4j-jdk14'   // Required only for debug configuration
-    }
-}
+jmix.ui.widgetSet = com.company.sample.widgets.CustomWidgetSet
 ```
