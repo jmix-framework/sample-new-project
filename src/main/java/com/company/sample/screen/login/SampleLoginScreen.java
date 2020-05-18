@@ -1,4 +1,4 @@
-package com.company.sample.screens.login;
+package com.company.sample.screen.login;
 
 import io.jmix.core.CoreProperties;
 import io.jmix.core.Messages;
