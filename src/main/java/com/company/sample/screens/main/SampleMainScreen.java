@@ -2,9 +2,9 @@ package com.company.sample.screens.main;
 
 import com.company.sample.widgets.CustomButton;
 import com.vaadin.ui.Layout;
-import io.jmix.ui.components.AppWorkArea;
-import io.jmix.ui.components.VBoxLayout;
-import io.jmix.ui.components.Window;
+import io.jmix.ui.component.AppWorkArea;
+import io.jmix.ui.component.VBoxLayout;
+import io.jmix.ui.component.Window;
 import io.jmix.ui.screen.*;
 
 import javax.annotation.Nullable;
