@@ -16,7 +16,9 @@
                                width="100%">
                         <image id="logoImage"
                                stylename="c-app-icon"
-                               scaleMode="SCALE_DOWN"/>
+                               scaleMode="SCALE_DOWN">
+                            <theme path="branding/app-icon-menu.svg"/>
+                        </image>
                         <label id="appTitleLabel"
                                stylename="c-app-title"
                                value="msg://application.logoLabel"/>
