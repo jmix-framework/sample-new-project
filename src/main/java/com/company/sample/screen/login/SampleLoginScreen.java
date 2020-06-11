@@ -8,7 +8,7 @@ import io.jmix.ui.Notifications;
 import io.jmix.ui.ScreenBuilders;
 import io.jmix.ui.UiProperties;
 import io.jmix.ui.action.Action;
-import io.jmix.ui.component.LookupField;
+import io.jmix.ui.component.ComboBox;
 import io.jmix.ui.component.PasswordField;
 import io.jmix.ui.component.TextField;
 import io.jmix.ui.navigation.Route;
@@ -34,7 +34,7 @@ public class SampleLoginScreen extends Screen {
     private PasswordField passwordField;
 
     @Inject
-    private LookupField<Locale> localesField;
+    private ComboBox<Locale> localesField;
 
     @Inject
     private Notifications notifications;
