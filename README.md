@@ -10,6 +10,7 @@ En extended theme must comply with the following requirements:
 
 * A theme must have a unique name
 * A theme with its resources must be located in the `src/main/themes/<theme-name>` directory
+* A `<theme-name>-theme.properties` file must be located in the resources
 * `styles.scss` is an entry point to compile the theme
 
 ```
@@ -33,8 +34,9 @@ dependencies {
 }
 ```
 
-* The theme name to use is defined in the `application.properties` file:
+* The theme name to use and the corresponding `<theme-name>-theme.properties` file path are defined in the `application.properties` file:
 
 ```
 jmix.ui.theme = custom-theme
+jmix.ui.themeConfig=com/company/sample/theme/custom-theme-theme.properties
 ```
