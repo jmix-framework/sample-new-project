@@ -18,8 +18,11 @@ repositories {
 dependencies {
     implementation 'io.jmix.starter.standard:jmix-starter-standard'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jta-atomikos', version: '2.3.1.RELEASE'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.14'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor:2.3.1.RELEASE'
 
-    runtimeOnly 'org.hsqldb:hsqldb'
+//    runtimeOnly 'org.hsqldb:hsqldb'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
