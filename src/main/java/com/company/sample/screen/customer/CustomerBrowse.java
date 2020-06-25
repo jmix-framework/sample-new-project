@@ -16,7 +16,7 @@
 
 package com.company.sample.screen.customer;
 
-import com.company.sample.entity.Customer;
+import com.company.sample.entity.customers.Customer;
 import io.jmix.ui.screen.*;
 
 @UiController("sample_Customer.browse")

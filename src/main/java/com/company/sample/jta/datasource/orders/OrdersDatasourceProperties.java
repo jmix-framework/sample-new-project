@@ -1,11 +1,11 @@
-package com.company.sample.jta.datasource;
+package com.company.sample.jta.datasource.orders;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix="main.datasource")
-public class MainDatasourceProperties {
+@ConfigurationProperties(prefix="orders.datasource")
+public class OrdersDatasourceProperties {
     String jdbcUrl;
     String username;
     String password;

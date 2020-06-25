@@ -14,9 +14,10 @@
  * limitations under the License.
  */
 
-package com.company.sample.entity;
+package com.company.sample.entity.customers;
 
 import io.jmix.core.metamodel.annotation.InstanceName;
+import io.jmix.core.metamodel.annotation.Store;
 import io.jmix.data.entity.BaseLongIdEntity;
 import org.apache.commons.lang3.RandomUtils;
 
@@ -26,6 +27,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@Store(name = "main")
 @Table(name = "SAMPLE_CUSTOMER")
 @Entity(name = "sample_Customer")
 public class Customer extends BaseLongIdEntity {

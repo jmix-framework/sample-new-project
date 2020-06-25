@@ -4,7 +4,7 @@
         focusComponent="customersTable">
     <data readOnly="true">
         <collection id="customersDc"
-                    class="com.company.sample.entity.Customer">
+                    class="com.company.sample.entity.customers.Customer">
             <fetchPlan extends="_local"/>
             <loader id="customersDl">
                 <query>

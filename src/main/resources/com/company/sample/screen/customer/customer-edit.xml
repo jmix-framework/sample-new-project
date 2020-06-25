@@ -20,7 +20,7 @@
         focusComponent="form">
     <data>
         <instance id="customerDc"
-                  class="com.company.sample.entity.Customer">
+                  class="com.company.sample.entity.customers.Customer">
             <fetchPlan extends="_local"/>
             <loader/>
         </instance>

@@ -1,4 +1,4 @@
-package com.company.sample.jta.datasource;
+package com.company.sample.jta.datasource.customers;
 
 import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.company.sample.jta.AtomikosServerPlatform;
@@ -19,7 +19,7 @@ import java.util.Map;
 @DependsOn("transactionManager")
 public class MainDatasourceConfiguration {
 
-    @Bean(name = "dataSource")
+    @Bean
     @Primary
     DataSource dataSource(MainDatasourceProperties dsConfig) {
         PGXADataSource ds = new PGXADataSource();
@@ -33,6 +33,7 @@ public class MainDatasourceConfiguration {
         return atomikosDataSourceBean;
     }
 
+    @Primary
     @Bean(name = "entityManagerFactory")
     @DependsOn({"transactionManager", "dataSource"})
     public LocalContainerEntityManagerFactoryBean entityManager(DataSource dataSource,
@@ -48,7 +49,7 @@ public class MainDatasourceConfiguration {
         entityManager.setJtaDataSource(dataSource);
         entityManager.setJpaVendorAdapter(jpaVendorAdapter);
         entityManager.setPersistenceUnitName("main");
-        entityManager.setPackagesToScan("com.company.sample.entity", "io.jmix");
+        entityManager.setPackagesToScan("com.company.sample.entity.customers", "io.jmix");
         entityManager.setJpaPropertyMap(properties);
         return entityManager;
     }

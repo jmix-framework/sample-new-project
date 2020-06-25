@@ -16,7 +16,7 @@
 
 package com.company.sample.screen.order;
 
-import com.company.sample.entity.Order;
+import com.company.sample.entity.orders.Order;
 import io.jmix.ui.screen.*;
 
 @UiController("sample_Order.edit")

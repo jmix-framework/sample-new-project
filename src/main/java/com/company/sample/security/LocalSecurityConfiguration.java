@@ -5,11 +5,9 @@ import io.jmix.core.security.UserRepository;
 import io.jmix.core.security.impl.CoreUser;
 import io.jmix.core.security.impl.InMemoryUserRepository;
 import io.jmix.core.security.impl.SystemAuthenticationProvider;
-import io.jmix.security.OnStandardSecurityImplementation;
 import io.jmix.security.authentication.SecuredAuthenticationProvider;
 import io.jmix.security.role.RoleRepository;
 import io.jmix.security.role.assignment.RoleAssignmentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -74,9 +72,7 @@ public class LocalSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean(UserRepository.NAME)
     public UserRepository userRepository() {
-        CoreUser systemUser = new CoreUser("system", "{noop}", "System");
-        CoreUser anonymousUser = new CoreUser("anonymous", "{noop}", "Anonymous");
-        InMemoryUserRepository repository = new InMemoryUserRepository(systemUser, anonymousUser);
+        InMemoryUserRepository repository = new InMemoryUserRepository();
         repository.createUser(new CoreUser("admin", "{noop}admin", "Admin"));
         return repository;
     }

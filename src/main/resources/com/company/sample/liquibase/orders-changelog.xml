@@ -7,14 +7,17 @@
 
     <changeSet author="helloworld" id="1.0">
 
-        <createTable tableName="SAMPLE_CUSTOMER">
+        <createTable tableName="SAMPLE_ORDER">
             <column name="ID" type="bigint">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="NAME" type="varchar(255)"/>
-            <column name="EMAIL" type="varchar(255)"/>
-        </createTable>
+            <column name="NUMBER_" type="varchar(255)"/>
+            <column name="DATE_" type="datetime"/>
+            <column name="CUSTOMER_ID" type="bigint">
+                <constraints nullable="false"/>
+            </column>
 
+        </createTable>
 
     </changeSet>
 

@@ -16,8 +16,8 @@
 
 package com.company.sample.role;
 
-import com.company.sample.entity.Customer;
-import com.company.sample.entity.Order;
+import com.company.sample.entity.customers.Customer;
+import com.company.sample.entity.orders.Order;
 import com.company.sample.screen.customer.CustomerBrowse;
 import com.company.sample.screen.customer.CustomerEdit;
 import io.jmix.security.model.EntityAttributePolicyAction;

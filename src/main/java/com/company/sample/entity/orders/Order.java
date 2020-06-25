@@ -14,15 +14,21 @@
  * limitations under the License.
  */
 
-package com.company.sample.entity;
+package com.company.sample.entity.orders;
 
+import com.company.sample.entity.customers.Customer;
+import io.jmix.core.entity.annotation.SystemLevel;
 import io.jmix.core.metamodel.annotation.InstanceName;
+import io.jmix.core.metamodel.annotation.ModelProperty;
+import io.jmix.core.metamodel.annotation.Store;
 import io.jmix.data.entity.BaseLongIdEntity;
 import org.apache.commons.lang3.RandomUtils;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
+@Store(name = "orders")
 @Table(name = "SAMPLE_ORDER")
 @Entity(name = "sample_Order")
 public class Order extends BaseLongIdEntity {
@@ -36,8 +42,13 @@ public class Order extends BaseLongIdEntity {
     @Column(name = "DATE_")
     private Date date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_ID")
+    @SystemLevel
+    @Column(name = "CUSTOMER_ID")
+    private Long customerId;
+
+    @NotNull
+    @Transient
+    @ModelProperty(related = "customerId", mandatory = true)
     private Customer customer;
 
     public Customer getCustomer() {
@@ -46,6 +57,7 @@ public class Order extends BaseLongIdEntity {
 
     public void setCustomer(Customer customer) {
         this.customer = customer;
+        this.customerId = customer.getId();
     }
 
     public Date getDate() {
@@ -64,9 +76,19 @@ public class Order extends BaseLongIdEntity {
         this.number = number;
     }
 
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
+    }
+
     @PrePersist
     void prePersist() {
-        setId(RandomUtils.nextLong());
+        if (getId() == null) {
+            setId(RandomUtils.nextLong());
+        }
     }
 
 }
