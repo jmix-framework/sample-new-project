@@ -17,11 +17,33 @@
 package com.company.sample.screen.order;
 
 import com.company.sample.entity.orders.Order;
+import com.company.sample.service.ComplexService;
+import io.jmix.ui.action.Action;
+import io.jmix.ui.component.GroupTable;
 import io.jmix.ui.screen.*;
+
+import javax.inject.Inject;
+import java.util.Set;
 
 @UiController("sample_Order.browse")
 @UiDescriptor("order-browse.xml")
 @LookupComponent("ordersTable")
 @LoadDataBeforeShow
 public class OrderBrowse extends StandardLookup<Order> {
+
+    @Inject
+    ComplexService complexService;
+
+    @Inject
+    GroupTable<Order> ordersTable;
+
+    @Subscribe("ordersTable.invokeService")
+    protected void onInvokeServiceActionPerformed(Action.ActionPerformedEvent event) {
+        Set<Order> selected = ordersTable.getSelected();
+        if (selected != null && selected.size() > 0) {
+            complexService.updateCustomerAndOrder(selected.iterator().next());
+        }
+    }
+
+
 }

@@ -21,11 +21,9 @@ import io.jmix.core.metamodel.annotation.Store;
 import io.jmix.data.entity.BaseLongIdEntity;
 import org.apache.commons.lang3.RandomUtils;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Store(name = "main")
 @Table(name = "SAMPLE_CUSTOMER")
@@ -41,6 +39,10 @@ public class Customer extends BaseLongIdEntity {
     @Column(name = "EMAIL")
     private String email;
 
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "LAST_ORDER_DATE")
+    private Date lastOrder;
+
     public String getEmail() {
         return email;
     }
@@ -55,6 +57,14 @@ public class Customer extends BaseLongIdEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Date getLastOrder() {
+        return lastOrder;
+    }
+
+    public void setLastOrder(Date lastOrder) {
+        this.lastOrder = lastOrder;
     }
 
     @PrePersist

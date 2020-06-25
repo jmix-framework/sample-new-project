@@ -13,6 +13,7 @@
             </column>
             <column name="NAME" type="varchar(255)"/>
             <column name="EMAIL" type="varchar(255)"/>
+            <column name="LAST_ORDER_DATE" type="datetime"/>
         </createTable>
 
 

@@ -12,7 +12,7 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="NUMBER_" type="varchar(255)"/>
-            <column name="DATE_" type="datetime"/>
+            <column name="ORDER_DATE" type="datetime"/>
             <column name="CUSTOMER_ID" type="bigint">
                 <constraints nullable="false"/>
             </column>

@@ -17,11 +17,37 @@
 package com.company.sample.screen.customer;
 
 import com.company.sample.entity.customers.Customer;
+import com.company.sample.service.customers.CustomersService;
+import io.jmix.ui.Notifications;
+import io.jmix.ui.action.Action;
+import io.jmix.ui.component.GroupTable;
 import io.jmix.ui.screen.*;
+
+import javax.inject.Inject;
+import java.util.Set;
 
 @UiController("sample_Customer.browse")
 @UiDescriptor("customer-browse.xml")
 @LookupComponent("customersTable")
 @LoadDataBeforeShow
 public class CustomerBrowse extends StandardLookup<Customer> {
+
+    @Inject
+    CustomersService customersService;
+
+    @Inject
+    GroupTable<Customer> customersTable;
+
+    @Inject
+    Notifications notifications;
+
+    @Subscribe("customersTable.updateCustomer")
+    protected void onUpdateCustomerActionPerformed(Action.ActionPerformedEvent event) {
+        Set<Customer> selected = customersTable.getSelected();
+        if (selected != null && selected.size() > 0) {
+            Customer customer = customersService.updateCustomerById(selected.iterator().next().getId());
+            notifications.create().withCaption(customer.getLastOrder().toString()).show();
+        }
+    }
+
 }

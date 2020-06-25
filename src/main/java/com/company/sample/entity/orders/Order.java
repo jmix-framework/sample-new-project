@@ -38,9 +38,9 @@ public class Order extends BaseLongIdEntity {
     @InstanceName
     private String number;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name = "DATE_")
-    private Date date;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "ORDER_DATE")
+    private Date orderDate;
 
     @SystemLevel
     @Column(name = "CUSTOMER_ID")
@@ -60,12 +60,12 @@ public class Order extends BaseLongIdEntity {
         this.customerId = customer.getId();
     }
 
-    public Date getDate() {
-        return date;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setOrderDate(Date date) {
+        this.orderDate = date;
     }
 
     public String getNumber() {
