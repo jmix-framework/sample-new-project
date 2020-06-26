@@ -17,7 +17,7 @@
 package com.company.sample.screen.order;
 
 import com.company.sample.entity.orders.Order;
-import com.company.sample.service.ComplexService;
+import com.company.sample.service.CompositeJTAService;
 import com.company.sample.service.orders.OrdersService;
 import io.jmix.ui.action.Action;
 import io.jmix.ui.model.CollectionContainer;
@@ -33,7 +33,7 @@ import javax.inject.Inject;
 public class OrderBrowse extends StandardLookup<Order> {
 
     @Inject
-    ComplexService complexService;
+    CompositeJTAService compositeJTAService;
 
     @Inject
     OrdersService ordersService;
@@ -49,7 +49,7 @@ public class OrderBrowse extends StandardLookup<Order> {
     protected void onInvokeServiceActionPerformed(Action.ActionPerformedEvent event) {
         Order selected = ordersDc.getItemOrNull();
         if (selected != null) {
-            complexService.updateCustomerAndOrder(selected);
+            compositeJTAService.updateCustomerAndOrder(selected);
         }
         ordersDl.load();
     }

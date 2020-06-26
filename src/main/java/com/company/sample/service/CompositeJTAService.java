@@ -10,15 +10,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class ComplexService {
+public class CompositeJTAService {
 
-    private final Logger logger = LoggerFactory.getLogger(ComplexService.class);
+    private final Logger logger = LoggerFactory.getLogger(CompositeJTAService.class);
 
     final CustomersService customersService;
 
     final OrdersService ordersService;
 
-    public ComplexService(CustomersService customersService, OrdersService ordersService) {
+    public CompositeJTAService(CustomersService customersService, OrdersService ordersService) {
         this.customersService = customersService;
         this.ordersService = ordersService;
     }
