@@ -3,6 +3,8 @@ package com.company.sample.jta.datasource.orders;
 import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.company.sample.jta.AtomikosServerPlatform;
 import io.jmix.autoconfigure.data.JmixLiquibase;
+import io.jmix.data.impl.JmixEntityManagerFactoryBean;
+import io.jmix.data.impl.PersistenceConfigProcessor;
 import io.jmix.data.impl.liquibase.LiquibaseChangeLogProcessor;
 import liquibase.integration.spring.SpringLiquibase;
 import org.postgresql.xa.PGXADataSource;
@@ -44,19 +46,18 @@ public class OrderDatasourceConfiguration {
     @Bean
     @DependsOn({"transactionManager", "ordersDataSource"})
     public LocalContainerEntityManagerFactoryBean ordersEntityManagerFactory(@Qualifier("orders") DataSource ordersDataSource,
-                                                                JpaVendorAdapter jpaVendorAdapter,
-                                                                JpaDialect dialect) throws Throwable {
+                                                                             PersistenceConfigProcessor processor,
+                                                                             JpaVendorAdapter jpaVendorAdapter,
+                                                                             JpaDialect dialect) throws Throwable {
 
         Map<String, Object> properties = new HashMap<>();
         properties.put("eclipselink.target-server", AtomikosServerPlatform.class.getName());
         properties.put("javax.persistence.transactionType", "JTA");
 
-        LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
+        JmixEntityManagerFactoryBean entityManager =
+                new JmixEntityManagerFactoryBean("orders", ordersDataSource, processor, jpaVendorAdapter);
         entityManager.setJpaDialect(dialect);
         entityManager.setJtaDataSource(ordersDataSource);
-        entityManager.setJpaVendorAdapter(jpaVendorAdapter);
-        entityManager.setPersistenceUnitName("orders");
-        entityManager.setPackagesToScan("com.company.sample.entity.orders", "io.jmix");
         entityManager.setJpaPropertyMap(properties);
         return entityManager;
     }

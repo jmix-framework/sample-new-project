@@ -2,6 +2,8 @@ package com.company.sample.jta.datasource.customers;
 
 import com.atomikos.jdbc.AtomikosDataSourceBean;
 import com.company.sample.jta.AtomikosServerPlatform;
+import io.jmix.data.impl.JmixEntityManagerFactoryBean;
+import io.jmix.data.impl.PersistenceConfigProcessor;
 import org.postgresql.xa.PGXADataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,6 +39,7 @@ public class MainDatasourceConfiguration {
     @Bean(name = "entityManagerFactory")
     @DependsOn({"transactionManager", "dataSource"})
     public LocalContainerEntityManagerFactoryBean entityManager(DataSource dataSource,
+                                                                PersistenceConfigProcessor processor,
                                                                 JpaVendorAdapter jpaVendorAdapter,
                                                                 JpaDialect dialect) throws Throwable {
 
@@ -44,12 +47,10 @@ public class MainDatasourceConfiguration {
         properties.put("eclipselink.target-server", AtomikosServerPlatform.class.getName());
         properties.put("javax.persistence.transactionType", "JTA");
 
-        LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
+        JmixEntityManagerFactoryBean entityManager =
+                new JmixEntityManagerFactoryBean("main", dataSource, processor, jpaVendorAdapter);
         entityManager.setJpaDialect(dialect);
         entityManager.setJtaDataSource(dataSource);
-        entityManager.setJpaVendorAdapter(jpaVendorAdapter);
-        entityManager.setPersistenceUnitName("main");
-        entityManager.setPackagesToScan("com.company.sample.entity.customers", "io.jmix");
         entityManager.setJpaPropertyMap(properties);
         return entityManager;
     }
