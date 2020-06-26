@@ -18,12 +18,13 @@ package com.company.sample.screen.order;
 
 import com.company.sample.entity.orders.Order;
 import com.company.sample.service.ComplexService;
+import com.company.sample.service.orders.OrdersService;
 import io.jmix.ui.action.Action;
-import io.jmix.ui.component.GroupTable;
+import io.jmix.ui.model.CollectionContainer;
+import io.jmix.ui.model.DataLoader;
 import io.jmix.ui.screen.*;
 
 import javax.inject.Inject;
-import java.util.Set;
 
 @UiController("sample_Order.browse")
 @UiDescriptor("order-browse.xml")
@@ -35,15 +36,31 @@ public class OrderBrowse extends StandardLookup<Order> {
     ComplexService complexService;
 
     @Inject
-    GroupTable<Order> ordersTable;
+    OrdersService ordersService;
+
+
+    @Inject
+    CollectionContainer<Order> ordersDc;
+
+    @Inject
+    DataLoader ordersDl;
 
     @Subscribe("ordersTable.invokeService")
     protected void onInvokeServiceActionPerformed(Action.ActionPerformedEvent event) {
-        Set<Order> selected = ordersTable.getSelected();
-        if (selected != null && selected.size() > 0) {
-            complexService.updateCustomerAndOrder(selected.iterator().next());
+        Order selected = ordersDc.getItemOrNull();
+        if (selected != null) {
+            complexService.updateCustomerAndOrder(selected);
         }
+        ordersDl.load();
     }
 
+    @Subscribe("ordersTable.updateOrder")
+    protected void onUpdateOrderActionPerformed(Action.ActionPerformedEvent event) {
+        Order selected = ordersDc.getItemOrNull();
+        if (selected != null) {
+            ordersService.saveOrder(selected);
+        }
+        ordersDl.load();
+    }
 
 }

@@ -41,7 +41,8 @@
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
-                <action id="invokeService" caption="Invoke Service"/>
+                <action id="invokeService" caption="Invoke Distributed Transaction Service"/>
+                <action id="updateOrder" caption="Update Order"/>
             </actions>
             <columns>
                 <column id="number"/>
@@ -54,6 +55,7 @@
                 <button id="createBtn" action="ordersTable.create"/>
                 <button id="editBtn" action="ordersTable.edit"/>
                 <button id="removeBtn" action="ordersTable.remove"/>
+                <button id="updateBtn" action="ordersTable.updateOrder"/>
                 <button id="serviceBtn" action="ordersTable.invokeService"/>
             </buttonsPanel>
         </groupTable>
