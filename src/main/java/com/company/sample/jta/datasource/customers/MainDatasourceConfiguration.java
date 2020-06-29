@@ -47,7 +47,7 @@ public class MainDatasourceConfiguration {
         properties.put("eclipselink.target-server", AtomikosServerPlatform.class.getName());
         properties.put("javax.persistence.transactionType", "JTA");
 
-        JmixEntityManagerFactoryBean entityManager =
+        LocalContainerEntityManagerFactoryBean entityManager =
                 new JmixEntityManagerFactoryBean("main", dataSource, processor, jpaVendorAdapter);
         entityManager.setJpaDialect(dialect);
         entityManager.setJtaDataSource(dataSource);

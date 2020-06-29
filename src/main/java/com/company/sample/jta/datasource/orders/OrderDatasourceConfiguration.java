@@ -29,7 +29,7 @@ public class OrderDatasourceConfiguration {
     @Autowired
     OrdersDatasourceProperties dsConfig;
 
-    @Bean
+    @Bean(name = "ordersDataSource")
     @Qualifier("orders")
     DataSource ordersDataSource() {
         PGXADataSource ds = new PGXADataSource();
@@ -44,7 +44,7 @@ public class OrderDatasourceConfiguration {
     }
 
     @Bean
-    @DependsOn({"transactionManager", "ordersDataSource"})
+    @DependsOn({"ordersTransactionManager", "ordersDataSource"})
     public LocalContainerEntityManagerFactoryBean ordersEntityManagerFactory(@Qualifier("orders") DataSource ordersDataSource,
                                                                              PersistenceConfigProcessor processor,
                                                                              JpaVendorAdapter jpaVendorAdapter,
@@ -54,7 +54,7 @@ public class OrderDatasourceConfiguration {
         properties.put("eclipselink.target-server", AtomikosServerPlatform.class.getName());
         properties.put("javax.persistence.transactionType", "JTA");
 
-        JmixEntityManagerFactoryBean entityManager =
+        LocalContainerEntityManagerFactoryBean entityManager =
                 new JmixEntityManagerFactoryBean("orders", ordersDataSource, processor, jpaVendorAdapter);
         entityManager.setJpaDialect(dialect);
         entityManager.setJtaDataSource(ordersDataSource);
