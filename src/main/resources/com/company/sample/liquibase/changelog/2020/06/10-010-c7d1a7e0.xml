@@ -5,6 +5,13 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <includeAll path="/com/company/sample/liquibase/foo-changelog"/>
+    <changeSet author="sample" id="1">
+        <createTable tableName="SAMPLE_GREETING">
+            <column name="ID" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="TEXT_" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
 
 </databaseChangeLog>
